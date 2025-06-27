@@ -1,118 +1,154 @@
-# Red Hat Website Skeleton
+# Edge AI Pipelines - UI
 
-A modern, responsive website skeleton built with Next.js, featuring Red Hat branding and a dynamic card carousel.
+A modern web interface for the [Edge Pipelines for Model Validation](https://github.com/redhat-et/edge-pipelines-for-model-validation) project, showcasing automated AI inference pipelines for edge deployment using bootc RHEL images.
+
+## 🎯 What This UI Shows
+
+This website demonstrates the **Edge AI Pipelines** project, which provides automated AI inference pipelines for edge deployment on NVIDIA Jetson devices. The UI showcases:
+
+### 🔧 Bootc Image Layers
+Three layered bootc images that build upon each other:
+
+1. **RHEL 9.4 Base Image** (Red Hat + NVIDIA)
+   - Enterprise-grade Red Hat Enterprise Linux 9.4
+   - Optimized for NVIDIA Jetson devices
+   - Integrated GPU drivers and edge computing capabilities
+
+2. **vLLM Inference Server** (Red Hat + vLLM)
+   - High-performance inference server built on RHEL base
+   - Optimized for large language model serving
+   - CUDA acceleration on Jetson hardware
+
+3. **Granite 7B Model Stack** (Red Hat + IBM)
+   - Complete AI stack with IBM Granite 7B model
+   - Running on vLLM inference server
+   - Ready for edge deployment on NVIDIA Jetson devices
+
+### 💻 Interactive Features
+- **Platform Selection**: Choose target hardware (currently NVIDIA Jetson)
+- **Podman Pull Commands**: Click any card to get the container pull command
+- **Copy to Clipboard**: One-click copying of podman commands
+- **Responsive Design**: Works on desktop, tablet, and mobile devices
 
 ## 🚀 Features
 
-- **Modern Design**: Clean, professional UI similar to enterprise SaaS platforms
-- **Red Hat Branding**: Custom Red Hat logo and red accent colors throughout
-- **Responsive Header**: Mobile-friendly navigation with hamburger menu
-- **Card Carousel**: Interactive product showcase with navigation controls
-- **Fully Responsive**: Works perfectly on desktop, tablet, and mobile devices
-- **TypeScript**: Type-safe development with full TypeScript support
-- **Tailwind CSS**: Utility-first CSS framework for rapid styling
+- **Project Showcase**: Interactive presentation of the edge AI pipelines project
+- **Bootc Image Visualization**: Clear display of layered container architecture
+- **Command Generation**: Instant access to podman pull commands for each image
+- **Red Hat Branding**: Official Red Hat design system and logos
+- **Partner Logos**: NVIDIA, vLLM, and IBM logos for each respective layer
+- **Responsive Layout**: Grid layout for 3 cards, carousel for more
+- **Modern Stack**: Built with Next.js 15, TypeScript, and Tailwind CSS
 
 ## 🛠 Technology Stack
 
 - **Framework**: Next.js 15 with App Router
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **Carousel**: Embla Carousel React
+- **UI Components**: Custom React components
 - **Icons**: Lucide React
+- **Image Optimization**: Next.js Image component
 - **Development**: Hot reload with Turbopack
 
-## 📦 Installation
+## 📦 Installation & Development
 
-1. **Install dependencies**:
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/redhat-et/ui-edge-pipelines.git
+   cd ui-edge-pipelines
+   ```
+
+2. **Install dependencies**:
    ```bash
    npm install
    ```
 
-2. **Start development server**:
+3. **Start development server**:
    ```bash
    npm run dev
    ```
 
-3. **Open your browser** and navigate to `http://localhost:3000`
+4. **Open your browser** and navigate to `http://localhost:3000`
 
-## 🏗 Project Structure
-
-```
-src/
-├── app/
-│   ├── globals.css          # Global styles and utilities
-│   ├── layout.tsx           # Root layout component
-│   └── page.tsx             # Home page component
-└── components/
-    ├── Header.tsx           # Responsive header with Red Hat branding
-    └── CardCarousel.tsx     # Interactive card carousel component
-```
-
-## 🎨 Components
+## 🎨 Key Components
 
 ### Header Component
-- Red Hat logo with "RH" monogram
-- Responsive navigation menu
-- Mobile hamburger menu
-- Styled with Red Hat brand colors
+- **Black Background**: Matches original Jounce.io design inspiration
+- **Red Hat Logo**: Official Red Hat SVG logo
+- **Minimal Design**: Clean, focused navigation
+- **Responsive**: Mobile-friendly layout
 
-### Card Carousel Component
-- Smooth horizontal scrolling
-- Navigation arrows
-- Responsive design (1 card on mobile, 2 on tablet, 3 on desktop)
-- Card categories and descriptions
-- Hover effects and transitions
-
-## 📝 Customization
-
-### Adding New Cards
-Edit the `sampleCards` array in `src/app/page.tsx`:
-
-```typescript
-const sampleCards: CardData[] = [
-  {
-    id: 'unique-id',
-    title: 'Your Card Title',
-    description: 'Your card description...',
-    image: 'placeholder', // or actual image URL
-    category: 'Your Category',
-    link: '#' // or actual link
-  },
-  // Add more cards...
-];
-```
-
-### Changing Colors
-The website uses Red Hat's brand colors. To customize:
-- Primary red: `bg-red-600`, `text-red-600`
-- Hover red: `hover:bg-red-700`
-- Update in Tailwind classes throughout components
-
-### Modifying Layout
-- Header: Edit `src/components/Header.tsx`
-- Content sections: Edit `src/app/page.tsx`
-- Carousel: Edit `src/components/CardCarousel.tsx`
-
-## 🎯 Ready for Production
-
-This skeleton is production-ready and includes:
-- ✅ SEO-friendly structure
-- ✅ Performance optimizations
-- ✅ Mobile responsiveness
-- ✅ TypeScript for reliability
-- ✅ Modern React patterns
-- ✅ Accessible design
+### CardCarousel Component
+- **Smart Layout**: Grid for ≤3 cards, carousel for more
+- **Logo Combinations**: Red Hat + partner logos (NVIDIA/vLLM/IBM)
+- **Interactive Cards**: Click to reveal podman pull commands
+- **Copy Functionality**: One-click command copying
+- **Responsive Design**: Adapts to all screen sizes
 
 ## 🚀 Deployment
 
-Deploy easily to Vercel (recommended for Next.js):
+### Deploy to Vercel (Recommended)
 
+1. **Build the project**:
+   ```bash
+   npm run build
+   ```
+
+2. **Deploy to Vercel**:
+   ```bash
+   npx vercel
+   ```
+
+3. **Or connect your GitHub repository** to Vercel for automatic deployments
+
+### Deploy to Other Platforms
+
+#### Netlify
 ```bash
 npm run build
+npx netlify deploy --prod --dir=out
 ```
 
-Or deploy to any platform that supports Node.js applications.
+#### Docker
+```bash
+# Build Docker image
+docker build -t edge-ai-pipelines-ui .
+
+# Run container
+docker run -p 3000:3000 edge-ai-pipelines-ui
+```
+
+#### Static Export
+```bash
+# For static hosting (GitHub Pages, S3, etc.)
+npm run build
+npm run export
+```
+
+### Environment Variables
+
+No environment variables required for basic deployment. The app is fully static and client-side.
+
+## 🔗 Related Projects
+
+- **Main Project**: [Edge Pipelines for Model Validation](https://github.com/redhat-et/edge-pipelines-for-model-validation)
+- **Red Hat Design System**: Based on Red Hat's official design guidelines
+- **Bootc Images**: Container images available on quay.io/redhat-et
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Make your changes
+4. Test locally: `npm run dev`
+5. Build and verify: `npm run build`
+6. Submit a pull request
+
+## 📄 License
+
+This project is part of the Red Hat Emerging Technologies initiative. See the main [edge-pipelines-for-model-validation](https://github.com/redhat-et/edge-pipelines-for-model-validation) repository for license information.
 
 ---
 
-Built with ❤️ using Next.js, TypeScript, and Tailwind CSS
+Built with ❤️ by Red Hat Emerging Technologies
+Showcasing AI inference pipelines for edge computing
